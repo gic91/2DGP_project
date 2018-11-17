@@ -10,9 +10,9 @@ time_time = Main_Stage.time_time
 
 X=[]
 Y=[]
-count =10
+count =20
 num=0
-shape=[0,1,2,1,2,0,1,2,0,2]
+shape=[0,1,2,1,2,0,1,2,0,2,0,1,2,1,2,0,1,2,0,2]
 plus =0
 class Back:
     def __init__(self):
@@ -96,13 +96,13 @@ class Bomb:
     def update(self):
         global X,num
         self.timer +=1
-        if self.timer %50 ==0:
+        if self.timer %30 ==0:
             self.timer=0
             num+=1
-            if num >10:
-               num=10
+            if num >20:
+               num=20
         for i in range(0, num):
-            X[i] += 7
+            X[i] += 15
             if X[i] >=1210:
                 X[i] =10000
         if X[count-1] >= 10000:

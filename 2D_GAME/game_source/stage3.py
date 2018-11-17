@@ -7,8 +7,8 @@ import stage3_state
 time_time = Main_Stage.time_time
 
 
-shape = [0,1,2,1,2,0,1,0,2,1,1]
-count =10
+shape = [0,1,2,1,2,0,1,0,2,1,2,0,1,2,1,2,0,1,0,2,1,1,]
+count =20
 Y = []
 for i in range(0, count+1):
     Y.append(i * 150)

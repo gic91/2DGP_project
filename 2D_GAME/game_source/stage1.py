@@ -41,11 +41,11 @@ class Shell:
 
     def __init__(self):
         self.image = load_image('game_sprite\\shell.png')
-        self.Count =10
+        self.Count =20
         self.out_on=[False]
         self.Y=[]
         self.X=[]
-        self.color=[1,0,1,2,0,1,2,0,1,2]
+        self.color=[1,0,1,2,0,1,2,0,1,2,1,0,1,2,0,1,2,0,1,2]
         for i in range(0,self.Count):
             #self.color.append(random.randint(0,2))
             self.Y.append(i*200)
