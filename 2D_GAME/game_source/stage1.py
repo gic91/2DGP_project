@@ -29,7 +29,8 @@ class Time:
     def update(self):
         global time_time,Min_time
         self.timer =int(get_time())
-        self.main_time = self.timer2 - self.timer -Main_Stage.min_time
+        self.main_time = self.timer2 - self.timer -Min_time
+        Main_Stage.min_time =Min_time
         time_time = self.main_time
         if self.main_time ==0:
             game_framework.quit()
@@ -58,7 +59,7 @@ class Shell:
         self.event_que.insert(0, event)
 
     def update(self):
-        global Min_time
+        global Min_time,time_time
         self.start-=10
         if self.start <=0:
             self.start =0
@@ -67,8 +68,9 @@ class Shell:
                 self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
+                    self.min_counter = False
                     game_framework.pop_state()
-            else:
+            elif self.color[self.num]==1 or self.color[self.num]==2:
                 self.min_counter =True
 
         elif stage1_state.on == 2:
@@ -76,23 +78,31 @@ class Shell:
                 self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
+                    self.min_counter = False
                     game_framework.pop_state()
-            else:
+            elif self.color[self.num] == 0 or self.color[self.num] == 2:
                 self.min_counter = True
         elif stage1_state.on == 3:
             if self.color[self.num] == 2:
                 self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
+                    self.min_counter = False
                     game_framework.pop_state()
-            else:
+            elif self.color[self.num] == 0 or self.color[self.num] == 1:
                 self.min_counter = True
         elif stage1_state.on == 4:
-            self.min_counter = False
+            if self.min_counter:
+                self.min_counter = False
+                Min_time += 3
         elif stage1_state.on == 5:
-            self.min_counter = False
+            if self.min_counter:
+                self.min_counter = False
+                Min_time += 3
         elif stage1_state.on == 6:
-            self.min_counter = False
+            if self.min_counter:
+                self.min_counter = False
+                Min_time += 3
 
         for i in range(0, self.num):
             if self.X[i] >=200:

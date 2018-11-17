@@ -8,7 +8,7 @@ time_time = Main_Stage.time_time
 
 
 shape = [0,1,2,1,2,0,1,0,2,1,2,0,1,2,1,2,0,1,0,2,1,1,]
-count =20
+count =21
 Y = []
 for i in range(0, count+1):
     Y.append(i * 150)
