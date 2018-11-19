@@ -54,7 +54,9 @@ class Shell:
         self.start=500
         self.num=0
         self.min_time=0
-        self.min_counter=False
+        self.min_counter_Left=False
+        self.min_counter_Center = False
+        self.min_counter_Right = False
     def add_event(self, event):
         self.event_que.insert(0, event)
 
@@ -65,44 +67,53 @@ class Shell:
             self.start =0
         if stage1_state.on == 1:
             if self.color[self.num]==0 :
+                self.min_counter_Left = False
                 self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
-                    self.min_counter = False
                     game_framework.pop_state()
             elif self.color[self.num]==1 or self.color[self.num]==2:
-                self.min_counter =True
+                self.min_counter_Left =True
+                if self.color[self.num-1]==0 :
+                    self.min_counter_Left = False
 
         elif stage1_state.on == 2:
             if self.color[self.num] == 1:
+                self.min_counter_Center = False
                 self.num += 1
+
                 if self.num >= self.Count:
                     self.num += 0
-                    self.min_counter = False
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 2:
-                self.min_counter = True
+                self.min_counter_Center = True
+                if self.color[self.num-1]==1 :
+                    self.min_counter_Center = False
         elif stage1_state.on == 3:
+
             if self.color[self.num] == 2:
+                self.min_counter_Right = False
                 self.num += 1
+
                 if self.num >= self.Count:
                     self.num += 0
-                    self.min_counter = False
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 1:
-                self.min_counter = True
+                self.min_counter_Right = True
+                if self.color[self.num-1]==2 :
+                    self.min_counter_Right = False
         elif stage1_state.on == 4:
-            if self.min_counter:
-                self.min_counter = False
-                Min_time += 3
+                if self.min_counter_Left:
+                    self.min_counter_Left = False
+                    Min_time += 3
         elif stage1_state.on == 5:
-            if self.min_counter:
-                self.min_counter = False
-                Min_time += 3
+              if self.min_counter_Center:
+                    self.min_counter_Center = False
+                    Min_time += 3
         elif stage1_state.on == 6:
-            if self.min_counter:
-                self.min_counter = False
-                Min_time += 3
+             if self.min_counter_Right:
+                    self.min_counter_Right = False
+                    Min_time += 3
 
         for i in range(0, self.num):
             if self.X[i] >=200:
@@ -112,9 +123,7 @@ class Shell:
                 for j in range(self.num,self.Count):
                     self.Y[j] -=10
 
-        if self.min_counter == True:
-            self.min_time =0 #######################시간감소, 중복입력 방지 구현
-            Main_Stage.min_time = self.min_time
+
 
     def handle_event(self,event):
         pass

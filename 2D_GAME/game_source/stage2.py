@@ -6,7 +6,7 @@ import Main_Stage
 import stage2_state
 
 time_time = Main_Stage.time_time
-
+Min_time= Main_Stage.min_time
 
 X=[]
 Y=[]
@@ -33,7 +33,8 @@ class Time:
     def update(self):
         global time_time
         self.timer =int(get_time())
-        self.main_time = self.timer2 - self.timer
+        self.main_time = self.timer2 - self.timer -Min_time
+        Main_Stage.min_time = Min_time
         time_time = self.main_time
         if self.main_time ==0:
             game_framework.quit()
