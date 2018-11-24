@@ -31,7 +31,7 @@ class Time:
         self.main_time =100
         self.timer2=100
     def update(self):
-        global time_time
+        global time_time,Min_time
         self.timer =int(get_time())
         self.main_time = self.timer2 - self.timer -Min_time
         Main_Stage.min_time = Min_time

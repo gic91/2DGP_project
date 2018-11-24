@@ -84,7 +84,7 @@ class Shell:
 
                 if self.num >= self.Count:
                     self.num += 0
-                  
+
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 2:
                 self.min_counter_Center = True
