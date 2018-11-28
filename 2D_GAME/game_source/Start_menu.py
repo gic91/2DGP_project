@@ -99,13 +99,13 @@ class ExitState:
 
 next_state_table = {
     StartState: {UP_UP: StartState, DOWN_UP: StartState,
-    DOWN_DOWN: ExitState, UP_DOWN: StartState, SPACE : StartState},
+    DOWN_DOWN: TutoState, UP_DOWN: StartState, SPACE : StartState},
 
     TutoState: {UP_UP: TutoState, DOWN_UP: TutoState,
                UP_DOWN: StartState, DOWN_DOWN: ExitState ,SPACE : TutoState},
 
     ExitState: {UP_UP: ExitState, DOWN_DOWN: ExitState,
-                 DOWN_UP: ExitState, UP_DOWN: StartState,  SPACE : ExitState},
+                 DOWN_UP: ExitState, UP_DOWN: TutoState,  SPACE : ExitState},
 
 
 }
