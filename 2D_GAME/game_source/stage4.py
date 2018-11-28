@@ -29,9 +29,9 @@ class Item:
         self.middle_star_y = []
         self.right_flow_x = []
         self.right_flow_y=[]
-        self.left_c=COUNT
-        self.center_c = COUNT
-        self.right_c = COUNT
+        self.left_c=COUNT-1
+        self.center_c = COUNT-1
+        self.right_c = COUNT-1
         self.switch_1=0
         self.switch_2 = 0
         self.switch_3 = 0
@@ -71,7 +71,7 @@ class Item:
             Mario.dir=1
             game_framework.pop_state()
     def draw(self):
-        for i in range(0, self.left_c):
+        for i in range(0, self.left_c-5):
             self.image.clip_draw(0, 300, 70, 100, self.left_mush_x[i], self.left_mush_y[i])
         for i in range(0, self.center_c):
             self.image.clip_draw(80, 300, 70, 100, self.middle_star_x[i], self.middle_star_y[i])

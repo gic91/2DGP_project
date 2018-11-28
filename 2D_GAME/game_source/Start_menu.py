@@ -118,6 +118,7 @@ class Menu:
         self.image2 = load_image('game_sprite\\background_title_1.png')
         self.image3 = load_image('game_sprite\\background_title_2.png')
         self.image4 = load_image('game_sprite\\background_title_3.png')
+
         self.start =0
         self.timer = 0
         self.timer2 = 0
@@ -125,7 +126,9 @@ class Menu:
         self.cur_state = StartState
         self.cur_state.enter(self, None)
         self.sleep_on=0
-
+        self.bgm = load_music('music\\jeaphan.mp3')
+        self.bgm.set_volume(64)
+        self.bgm.repeat_play()
 
 
     def add_event(self, event):

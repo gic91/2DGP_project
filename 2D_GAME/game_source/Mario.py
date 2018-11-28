@@ -65,7 +65,7 @@ class IdleState:
     def exit(boy, event):
         if event == SPACE:
             boy.jump_on = True
-
+            boy.jump_sound.play()
     @staticmethod
     def do(boy):
         global coin,box1,box2,box3,box4
@@ -184,6 +184,7 @@ class RunState:
         if event == SPACE:
             boy.jump_on =True
             boy.dir = 1
+            boy.jump_sound.play()
     @staticmethod
     def do(boy):
         global coin, box1, box2, box3, box4
@@ -318,7 +319,8 @@ class Mario:
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
         self.sleep_on = 0
-
+        self.jump_sound = load_wav('music\\Jump.wav')
+        self.jump_sound.set_volume(32)
     def get_bb(self):
 
         return self.x - 25, self.y - 40+self.jump, self.x + 25, self.y + 40+self.jump
