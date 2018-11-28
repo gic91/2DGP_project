@@ -110,8 +110,6 @@ def run(start_state):
         if frame_rate > Max_fps:
             Max_fps = frame_rate
         current_time += frame_time
-        print("Frame Time: %s sec, Frame Rate: %f fps" %(frame_time,frame_rate))
-        print("Max_fps : %f"%Max_fps)
     # repeatedly delete the top of the stack
     while (len(stack) > 0):
         stack[-1].exit()
