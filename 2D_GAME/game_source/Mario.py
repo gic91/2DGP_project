@@ -173,6 +173,7 @@ class RunState:
             boy.velocity -= RUN_SPEED_PPS
         elif event == LEFT_UP:
             boy.velocity += RUN_SPEED_PPS
+
         boy.dir = clamp(-1, boy.velocity, 1)
         if boy.Coin_count ==4:
             if event == UP_DOWN:
@@ -182,7 +183,7 @@ class RunState:
     def exit(boy, event):
         if event == SPACE:
             boy.jump_on =True
-
+            boy.dir = 1
     @staticmethod
     def do(boy):
         global coin, box1, box2, box3, box4
