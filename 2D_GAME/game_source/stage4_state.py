@@ -6,10 +6,19 @@ from pico2d import *
 import game_framework
 import stage4_world
 import game_state
+from stage4 import Back
+from stage4 import Item
 name = "Stage_4State"
 
+back =None
+item = None
+on =0
 def enter():
-    pass
+    global back,item
+    back = Back()
+    item = Item()
+    stage4_world.add_object(back, 0)
+    stage4_world.add_object(item, 0)
 def exit():
     stage4_world.clear()
 
@@ -22,13 +31,24 @@ def resume():
 
 
 def handle_events():
-    global Start_menu
+    global Start_menu,on
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
-                game_framework.pop_state()
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:  # R
+            on = 1
+
+        elif event.type == SDL_KEYUP and event.key == SDLK_LEFT:  # R
+            on = 4
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:  # B
+            on = 2
+        elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:  # B
+            on = 5
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_DOWN:  # G
+            on = 3
+        elif event.type == SDL_KEYUP and event.key == SDLK_DOWN:  # G
+            on = 6
 
 
 
