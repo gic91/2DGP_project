@@ -73,6 +73,10 @@ class Hero:
         self.HY=[]
         for i in range(0, count+1):
             self.HY.append(i * 0)
+        self.hero_sound = load_wav('music\\stage3.wav')
+        self.hero_sound.set_volume(32)
+        self.error_sound = load_wav('music\\error.wav')
+        self.error_sound.set_volume(32)
     def update(self):
         global X,count,num,shape,plus
 
@@ -82,20 +86,25 @@ class Hero:
             if shape[self.num]==2:
                 #if self.timer %40 ==0:
                 self.num+=1
+                self.hero_sound.play()
                 if self.num >= count:
                     game_framework.pop_state()
+
         elif stage3_state.key ==2:
             self.state = 2#l
             if shape[self.num] == 0:
                 #if self.timer % 40 == 0:
                 self.num += 1
+                self.hero_sound.play()
                 if self.num >= count:
                     game_framework.pop_state()
+
         elif stage3_state.key ==3:
             self.state = 3#->
             if shape[self.num] == 1:
                # if self.timer % 40 == 0:
                 self.num += 1
+                self.hero_sound.play()
                 if self.num >= count:
                     game_framework.pop_state()
 
