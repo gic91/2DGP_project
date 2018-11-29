@@ -4,10 +4,10 @@ import game_framework
 import random
 import Main_Stage
 import stage2_state
-
+import game_state
 time_time = Main_Stage.time_time
 Min_time= Main_Stage.min_time
-
+mario = None
 X=[]
 Y=[]
 count =20
@@ -48,6 +48,8 @@ class Hero:
         for i in range(0,count):
             Y.append(i*0)
         num=0
+        self.hero_sound = load_wav('music\\stage2_hero.wav')
+        self.hero_sound.set_volume(32)
     def update(self):
         global X,count,num,shape,plus
         if stage2_state.key ==1:
@@ -57,6 +59,7 @@ class Hero:
                    if shape[i] ==0:
                         Y[i] =800
                         X[i] =1300
+                        self.hero_sound.play()
 
         elif stage2_state.key ==2:
             self.state = 2#l
@@ -65,6 +68,7 @@ class Hero:
                    if shape[i] ==1:
                         Y[i] =800
                         X[i] = 1300
+                        self.hero_sound.play()
         elif stage2_state.key ==3:
             self.state = 3#->
             for i in range(0,num):
@@ -72,6 +76,7 @@ class Hero:
                    if shape[i] ==2:
                         Y[i] =800
                         X[i] = 1300
+                        self.hero_sound.play()
         elif stage2_state.key ==4 or stage2_state.key ==5  or stage2_state.key ==6:
             self.state = 0
     def draw(self):
@@ -87,18 +92,21 @@ class Hero:
 
 class Bomb:
     def __init__(self):
-        global count,num
+        global count,num,mario
         self.image = load_image('game_sprite\\stage2_item.png')
-
-
+        self.bomb_sound = load_wav('music\\stage2_bomb.wav')
+        self.bomb_sound.set_volume(32)
+        mario = game_state.mario
         for i in range(0,count):
             X.append(i*0)
         self.timer=0
         num=0
     def update(self):
         global X,num,Min_time
+
         self.timer +=1
         if self.timer %30 ==0:
+            self.bomb_sound.play()
             self.timer=0
             num+=1
             if num >20:
@@ -110,7 +118,9 @@ class Bomb:
             elif X[i] >=1210:
                 X[i] =10000
         if X[count-1] >= 10000:
+            mario.dir_init()
             game_framework.pop_state()
+
     def draw(self):
         global X,shape
         for j, i in enumerate(shape):

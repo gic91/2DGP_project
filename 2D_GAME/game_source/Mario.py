@@ -25,7 +25,7 @@ ACTION_PER_TIME = 1.0
 FRAMES_PER_ACTION = 8
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SPACE,UP_DOWN= range(6)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SPACE,UP_DOWN,Z_DOWN= range(7)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -33,7 +33,8 @@ key_event_table = {
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
     (SDL_KEYDOWN, SDLK_SPACE): SPACE,
-    (SDL_KEYDOWN, SDLK_UP): UP_DOWN
+    (SDL_KEYDOWN, SDLK_UP): UP_DOWN,
+    (SDL_KEYDOWN, SDLK_z): Z_DOWN
 }
 
 
@@ -66,6 +67,10 @@ class IdleState:
         if event == SPACE:
             boy.jump_on = True
             boy.jump_sound.play()
+        if event ==Z_DOWN:
+            boy.cur_state = IdleState
+            boy.dir = 1
+            boy.velocity = 0
     @staticmethod
     def do(boy):
         global coin,box1,box2,box3,box4
@@ -185,6 +190,10 @@ class RunState:
             boy.jump_on =True
             boy.dir = 1
             boy.jump_sound.play()
+        if event == Z_DOWN:
+            boy.cur_state = IdleState
+            boy.dir = 1
+            boy.velocity = 0
     @staticmethod
     def do(boy):
         global coin, box1, box2, box3, box4
@@ -289,10 +298,10 @@ class RunState:
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState,
-                RIGHT_DOWN: RunState, LEFT_DOWN: RunState,  SPACE: IdleState, UP_DOWN :IdleState},
+                RIGHT_DOWN: RunState, LEFT_DOWN: RunState,  SPACE: IdleState, UP_DOWN :IdleState,Z_DOWN : IdleState},
 
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
-               LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState,  SPACE: RunState, UP_DOWN : RunState},
+               LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState,  SPACE: RunState, UP_DOWN : RunState,Z_DOWN :IdleState},
 
 
 }
@@ -327,7 +336,9 @@ class Mario:
 
     def add_event(self, event):
         self.event_que.insert(0, event)
-
+    def dir_init(self):
+        self.dir=1
+        self.velocity = 0
     def update(self):
         self.cur_state.do(self)
         if len(self.event_que) > 0:

@@ -57,6 +57,10 @@ class Shell:
         self.min_counter_Left=False
         self.min_counter_Center = False
         self.min_counter_Right = False
+        self.correct_sound = load_wav('music\\stage1.wav')
+        self.correct_sound.set_volume(32)
+        self.error_sound = load_wav('music\\error.wav')
+        self.error_sound.set_volume(32)
     def add_event(self, event):
         self.event_que.insert(0, event)
 
@@ -68,12 +72,14 @@ class Shell:
         if stage1_state.on == 1:
             if self.color[self.num]==0 :
                 self.min_counter_Left = False
+                self.correct_sound.play()
                 self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
                     game_framework.pop_state()
             elif self.color[self.num]==1 or self.color[self.num]==2:
                 self.min_counter_Left =True
+
                 if self.color[self.num-1]==0 :
                     self.min_counter_Left = False
 
@@ -81,13 +87,14 @@ class Shell:
             if self.color[self.num] == 1:
                 self.min_counter_Center = False
                 self.num += 1
-
+                self.correct_sound.play()
                 if self.num >= self.Count:
                     self.num += 0
 
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 2:
                 self.min_counter_Center = True
+
                 if self.color[self.num-1]==1 :
                     self.min_counter_Center = False
         elif stage1_state.on == 3:
@@ -95,26 +102,30 @@ class Shell:
             if self.color[self.num] == 2:
                 self.min_counter_Right = False
                 self.num += 1
-
+                self.correct_sound.play()
                 if self.num >= self.Count:
                     self.num += 0
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 1:
                 self.min_counter_Right = True
+
                 if self.color[self.num-1]==2 :
                     self.min_counter_Right = False
         elif stage1_state.on == 4:
                 if self.min_counter_Left:
                     self.min_counter_Left = False
                     Min_time += 3
+                    self.error_sound.play()
         elif stage1_state.on == 5:
               if self.min_counter_Center:
                     self.min_counter_Center = False
                     Min_time += 3
+                    self.error_sound.play()
         elif stage1_state.on == 6:
              if self.min_counter_Right:
                     self.min_counter_Right = False
                     Min_time += 3
+                    self.error_sound.play()
 
         for i in range(0, self.num):
             if self.X[i] >=200:
