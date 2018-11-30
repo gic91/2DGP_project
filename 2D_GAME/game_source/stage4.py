@@ -4,10 +4,6 @@ import game_framework
 import random
 import Main_Stage
 import stage4_state
-import Mario
-time_time = 1
-Min_time= 1
-
 COUNT =30
 
 class Back:
@@ -38,6 +34,8 @@ class Item:
         self.switch_3 = 0
         self.item_sound = load_wav('music\\Balloon.wav')
         self.item_sound.set_volume(50)
+        self.clear_sound = load_wav('music\\clear.wav')
+        self.clear_sound.set_volume(55)
         for i in range(0, self.left_c):
             self.left_mush_x.append(random.randint(30, 800))
             self.left_mush_y.append(random.randint(30, 750))
@@ -83,7 +81,8 @@ class Item:
                 self.right_c = 0
                 self.switch_3 = 1
         if self.switch_1==1 and self.switch_2 ==1 and self.switch_3 ==1:
-            Mario.dir=1
+            Main_Stage.plus_time += 10
+            self.clear_sound.play()
             game_framework.pop_state()
     def draw(self):
         for i in range(0, self.left_c):
@@ -92,21 +91,3 @@ class Item:
             self.image.clip_draw(80, 300, 70, 100, self.middle_star_x[i], self.middle_star_y[i])
         for i in range(0, self.right_c):
             self.image.clip_draw(160, 300, 70, 100, self.right_flow_x[i], self.right_flow_y[i])
-class Time:
-    def __init__(self):
-        self.timer =0
-        self.font = load_font('ENCR10B.TTF', 60)
-        self.main_time =100
-        self.timer2=100
-        self.min_time=0
-    def update(self):
-        global time_time,Min_time
-        self.timer =int(get_time())
-        self.main_time = self.timer2 - self.timer -Min_time
-        Main_Stage.min_time =Min_time
-        time_time = self.main_time
-        if self.main_time ==0:
-            game_framework.quit()
-    def draw(self):
-        self.font.draw(1060, 670, '%3d' % self.main_time, (255, 0, 0))
-

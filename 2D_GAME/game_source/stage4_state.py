@@ -8,17 +8,21 @@ import stage4_world
 import game_state
 from stage4 import Back
 from stage4 import Item
+from Main_Stage import Time
 name = "Stage_4State"
 
 back =None
 item = None
+time =None
 on =0
 def enter():
-    global back,item
+    global back,item,time
     back = Back()
     item = Item()
+    time = Time()
     stage4_world.add_object(back, 0)
-    stage4_world.add_object(item, 0)
+    stage4_world.add_object(time, 0)
+    stage4_world.add_object(item, 1)
 def exit():
     stage4_world.clear()
 

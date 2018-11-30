@@ -85,7 +85,8 @@ class Bomb:
         self.bomb_sound.set_volume(32)
         self.error_sound = load_wav('music\\stage2_error.wav')
         self.error_sound.set_volume(32)
-
+        self.clear_sound = load_wav('music\\clear.wav')
+        self.clear_sound.set_volume(55)
         for i in range(0,count):
             X.append(i*0)
         self.timer=0
@@ -94,7 +95,7 @@ class Bomb:
         global X,num,Min_time
 
         self.timer +=1
-        if self.timer %30 ==0:
+        if self.timer %20 ==0:
             self.bomb_sound.play()
             self.timer=0
             num+=1
@@ -103,12 +104,13 @@ class Bomb:
         for i in range(0, num):
             X[i] += 15
             if X[i] >=1200 and X[i] <1220:
-                Main_Stage.min_time += 3
+                Main_Stage.min_time += 2
                 self.error_sound.play()
             elif X[i] >=1220:
                 X[i] =10000
         if X[count-1] >= 10000:
             Main_Stage.plus_time += 10
+            self.clear_sound.play()
             game_framework.pop_state()
 
     def draw(self):

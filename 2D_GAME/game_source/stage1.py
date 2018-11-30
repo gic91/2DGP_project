@@ -44,7 +44,8 @@ class Shell:
         self.correct_sound.set_volume(32)
         self.error_sound = load_wav('music\\error.wav')
         self.error_sound.set_volume(32)
-
+        self.clear_sound = load_wav('music\\clear.wav')
+        self.clear_sound.set_volume(55)
     def add_event(self, event):
         self.event_que.insert(0, event)
 
@@ -61,6 +62,7 @@ class Shell:
                 if self.num >= self.Count:
                     self.num += 0
                     Main_Stage.plus_time+=10
+                    self.clear_sound.play()
                     game_framework.pop_state()
             elif self.color[self.num]==1 or self.color[self.num]==2:
                 self.min_counter_Left =True
@@ -76,6 +78,7 @@ class Shell:
                 if self.num >= self.Count:
                     self.num += 0
                     Main_Stage.plus_time += 10
+                    self.clear_sound.play()
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 2:
                 self.min_counter_Center = True
@@ -91,6 +94,7 @@ class Shell:
                 if self.num >= self.Count:
                     self.num += 0
                     Main_Stage.plus_time += 10
+                    self.clear_sound.play()
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 1:
                 self.min_counter_Right = True
