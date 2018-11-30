@@ -5,8 +5,8 @@ import random
 import Main_Stage
 import stage4_state
 import Mario
-time_time = Main_Stage.time_time
-Min_time= Main_Stage.min_time
+time_time = 1
+Min_time= 1
 
 COUNT =30
 

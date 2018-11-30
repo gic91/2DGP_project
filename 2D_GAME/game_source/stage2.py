@@ -5,8 +5,7 @@ import random
 import Main_Stage
 import stage2_state
 import game_state
-time_time = Main_Stage.time_time
-Min_time= Main_Stage.min_time
+
 mario = None
 X=[]
 Y=[]
@@ -27,22 +26,6 @@ class Back:
     def draw(self):
         self.image.draw(600, 400)
 
-class Time:
-    def __init__(self):
-        self.timer =0
-        self.font = load_font('ENCR10B.TTF', 60)
-        self.main_time =100
-        self.timer2=100
-    def update(self):
-        global time_time,Min_time
-        self.timer =int(get_time())
-        self.main_time = self.timer2 - self.timer-Min_time
-        Main_Stage.min_time = Min_time
-
-        if self.main_time ==0:
-            game_framework.quit()
-    def draw(self):
-        self.font.draw(1060, 670, '%3d' % time_time, (255, 0, 0))
 
 class Hero:
     def __init__(self):
@@ -120,12 +103,12 @@ class Bomb:
         for i in range(0, num):
             X[i] += 15
             if X[i] >=1200 and X[i] <1220:
-                Min_time+=5
+                Main_Stage.min_time += 3
                 self.error_sound.play()
             elif X[i] >=1220:
                 X[i] =10000
         if X[count-1] >= 10000:
-            mario.dir_init()
+            Main_Stage.plus_time += 10
             game_framework.pop_state()
 
     def draw(self):

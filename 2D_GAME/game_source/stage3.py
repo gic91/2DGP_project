@@ -4,7 +4,7 @@ import game_framework
 import random
 import Main_Stage
 import stage3_state
-time_time = Main_Stage.time_time
+time_time = 1
 
 
 shape = [0,1,2,1,2,0,1,0,2,1,2,0,1,2,1,2,0,1,0,2,1,1,]

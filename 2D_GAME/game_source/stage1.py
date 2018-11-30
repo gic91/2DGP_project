@@ -4,9 +4,10 @@ import game_framework
 import random
 import Main_Stage
 import stage1_state
-from Main_Stage import Time
 
-time_time=None
+
+
+
 # 시간 조정만 하면 끝
 # 깨면 +10
 class Back:
@@ -23,7 +24,7 @@ class Back:
 class Shell:
 
     def __init__(self):
-        global time_time
+
         self.image = load_image('game_sprite\\shell.png')
         self.Count =20
         self.out_on=[False]
@@ -43,7 +44,7 @@ class Shell:
         self.correct_sound.set_volume(32)
         self.error_sound = load_wav('music\\error.wav')
         self.error_sound.set_volume(32)
-        time_time=Time()
+
     def add_event(self, event):
         self.event_que.insert(0, event)
 
@@ -59,6 +60,7 @@ class Shell:
                 self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
+                    Main_Stage.plus_time+=10
                     game_framework.pop_state()
             elif self.color[self.num]==1 or self.color[self.num]==2:
                 self.min_counter_Left =True
@@ -73,7 +75,7 @@ class Shell:
                 self.correct_sound.play()
                 if self.num >= self.Count:
                     self.num += 0
-
+                    Main_Stage.plus_time += 10
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 2:
                 self.min_counter_Center = True
@@ -88,6 +90,7 @@ class Shell:
                 self.correct_sound.play()
                 if self.num >= self.Count:
                     self.num += 0
+                    Main_Stage.plus_time += 10
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 1:
                 self.min_counter_Right = True
@@ -97,17 +100,17 @@ class Shell:
         elif stage1_state.on == 4:
                 if self.min_counter_Left:
                     self.min_counter_Left = False
-                    time_time.min_time += 3
+                    Main_Stage.min_time += 3
                     self.error_sound.play()
         elif stage1_state.on == 5:
               if self.min_counter_Center:
                     self.min_counter_Center = False
-                    time_time.min_time+= 3
+                    Main_Stage.min_time+= 3
                     self.error_sound.play()
         elif stage1_state.on == 6:
              if self.min_counter_Right:
                     self.min_counter_Right = False
-                    time_time.min_time += 3
+                    Main_Stage.min_time += 3
                     self.error_sound.play()
 
         for i in range(0, self.num):

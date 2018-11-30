@@ -7,7 +7,8 @@ import game_framework
 import stage2_world
 import game_state
 from stage2 import Back
-from stage2 import Time
+#from stage2 import Time
+from Main_Stage import Time
 from stage2 import Hero
 from stage2 import Bomb
 name = "Stage_2State"
