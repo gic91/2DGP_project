@@ -250,6 +250,9 @@ class RunState:
                         box4 = True
                         coin = Coin(boy.Coin_count)
                         game_world.add_object(coin, 0)
+                        boy.cur_state = IdleState
+                        boy.dir = 1
+                        boy.velocity = 0
                         game_framework.push_state(stage4_state)
             elif boy.jump < 0:
                 boy.jump_check = False

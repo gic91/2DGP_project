@@ -36,9 +36,8 @@ class Item:
         self.switch_1=0
         self.switch_2 = 0
         self.switch_3 = 0
-        self.item_sound = load_wav('music\\stage4.wav')
-        self.item_sound.set_volume(32)
-    def update(self):
+        self.item_sound = load_wav('music\\Balloon.wav')
+        self.item_sound.set_volume(50)
         for i in range(0, self.left_c):
             self.left_mush_x.append(random.randint(30, 800))
             self.left_mush_y.append(random.randint(30, 750))
@@ -48,6 +47,8 @@ class Item:
         for i in range(0, self.right_c):
             self.right_flow_x.append(random.randint(30, 800))
             self.right_flow_y.append(random.randint(30, 750))
+    def update(self):
+
 
         if stage4_state.on == 1:
             self.mincount =1
