@@ -104,17 +104,17 @@ class Shell:
         elif stage1_state.on == 4:
                 if self.min_counter_Left:
                     self.min_counter_Left = False
-                    Main_Stage.min_time += 3
+                    Main_Stage.min_time += 5
                     self.error_sound.play()
         elif stage1_state.on == 5:
               if self.min_counter_Center:
                     self.min_counter_Center = False
-                    Main_Stage.min_time+= 3
+                    Main_Stage.min_time+= 5
                     self.error_sound.play()
         elif stage1_state.on == 6:
              if self.min_counter_Right:
                     self.min_counter_Right = False
-                    Main_Stage.min_time += 3
+                    Main_Stage.min_time += 5
                     self.error_sound.play()
 
         for i in range(0, self.num):

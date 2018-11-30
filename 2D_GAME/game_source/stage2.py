@@ -104,7 +104,7 @@ class Bomb:
         for i in range(0, num):
             X[i] += 15
             if X[i] >=1200 and X[i] <1220:
-                Main_Stage.min_time += 2
+                Main_Stage.min_time += 5
                 self.error_sound.play()
             elif X[i] >=1220:
                 X[i] =10000

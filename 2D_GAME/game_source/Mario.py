@@ -7,6 +7,7 @@ import stage1_state
 import stage2_state
 import stage3_state
 import stage4_state
+import end_state
 import random
 from Main_Stage import Coin
 # Boy Run Speed
@@ -94,6 +95,7 @@ class IdleState:
                         boy.dir = 1
                         boy.velocity = 0
                         game_framework.push_state(stage1_state)
+
                 elif boy.x >=370 and boy.x<=440:
 
                     if box2 == False:

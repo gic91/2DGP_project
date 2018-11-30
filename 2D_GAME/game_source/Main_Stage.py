@@ -2,6 +2,7 @@ from pico2d import *
 
 import game_framework
 import menu_state
+import end_state
 time_time=100
 min_time=0
 plus_time=0
@@ -52,7 +53,7 @@ class Princess:
         if time_time <= 0:
             self.y+=1
             if self.y >= 250:
-                game_framework.quit()
+                game_framework.change_state(end_state)
                 self.y = 250
     def draw(self):
         global time_time
@@ -76,6 +77,8 @@ class Time:
         global time_time,min_time,plus_time
         self.timer =int(get_time())
         self.main_time = self.timer2 - self.timer-min_time + menu_state.menu_time +plus_time
+        if self.main_time <0:
+            self.main_time = 0
         time_time = self.main_time
         if self.main_time ==0:
             game_framework.quit()

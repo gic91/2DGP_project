@@ -9,9 +9,5 @@ import stage3_state
 import stage4_state
 pico2d.open_canvas(1200, 800, sync=True)
 game_framework.run(menu_state)
-game_framework.run(game_state)
-game_framework.run(stage1_state)
-game_framework.run(stage2_state)
-game_framework.run(stage3_state)
-game_framework.run(stage4_state)
+
 pico2d.close_canvas()

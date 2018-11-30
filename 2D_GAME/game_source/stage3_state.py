@@ -7,7 +7,8 @@ import game_framework
 import stage3_world
 import game_state
 key =0
-from stage3 import Time
+#from stage3 import Time
+from Main_Stage import Time
 from stage3 import Back
 from stage3 import Shell
 from stage3 import Hero

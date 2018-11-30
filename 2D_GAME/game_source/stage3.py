@@ -4,8 +4,6 @@ import game_framework
 import random
 import Main_Stage
 import stage3_state
-time_time = 1
-
 
 shape = [0,1,2,1,2,0,1,0,2,1,2,0,1,2,1,2,0,1,0,2,1,1,]
 count =21
@@ -22,21 +20,6 @@ class Back:
     def draw(self):
         self.image.draw(600, 400)
 
-class Time:
-    def __init__(self):
-        self.timer =0
-        self.font = load_font('ENCR10B.TTF', 60)
-        self.main_time =100
-        self.timer2=100
-    def update(self):
-        global time_time
-        self.timer =int(get_time())
-        self.main_time = self.timer2 - self.timer
-        time_time = self.main_time
-        if self.main_time ==0:
-            game_framework.quit()
-    def draw(self):
-        self.font.draw(1060, 670, '%3d' % self.main_time, (255, 0, 0))
 
 class Shell:
 
@@ -77,6 +60,8 @@ class Hero:
         self.hero_sound.set_volume(32)
         self.error_sound = load_wav('music\\error.wav')
         self.error_sound.set_volume(32)
+        self.clear_sound = load_wav('music\\clear.wav')
+        self.clear_sound.set_volume(55)
     def update(self):
         global X,count,num,shape,plus
 
@@ -88,6 +73,8 @@ class Hero:
                 self.num+=1
                 self.hero_sound.play()
                 if self.num >= count:
+                    Main_Stage.plus_time += 10
+                    self.clear_sound.play()
                     game_framework.pop_state()
 
         elif stage3_state.key ==2:
@@ -97,6 +84,8 @@ class Hero:
                 self.num += 1
                 self.hero_sound.play()
                 if self.num >= count:
+                    Main_Stage.plus_time += 10
+                    self.clear_sound.play()
                     game_framework.pop_state()
 
         elif stage3_state.key ==3:
@@ -106,6 +95,8 @@ class Hero:
                 self.num += 1
                 self.hero_sound.play()
                 if self.num >= count:
+                    Main_Stage.plus_time += 10
+                    self.clear_sound.play()
                     game_framework.pop_state()
 
 
