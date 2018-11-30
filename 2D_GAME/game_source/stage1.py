@@ -79,38 +79,38 @@ class Shell:
                     game_framework.pop_state()
             elif self.color[self.num]==1 or self.color[self.num]==2:
                 self.min_counter_Left =True
-
                 if self.color[self.num-1]==0 :
                     self.min_counter_Left = False
 
         elif stage1_state.on == 2:
             if self.color[self.num] == 1:
-                self.min_counter_Center = False
-                self.num += 1
+                self.min_counter_Left = False
                 self.correct_sound.play()
+                self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
-
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 2:
-                self.min_counter_Center = True
+                self.min_counter_Left = True
+                if self.color[self.num - 1] == 1:
+                    self.min_counter_Left = False
 
-                if self.color[self.num-1]==1 :
-                    self.min_counter_Center = False
+
         elif stage1_state.on == 3:
 
             if self.color[self.num] == 2:
-                self.min_counter_Right = False
-                self.num += 1
+                self.min_counter_Left = False
                 self.correct_sound.play()
+                self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
                     game_framework.pop_state()
-            elif self.color[self.num] == 0 or self.color[self.num] == 1:
-                self.min_counter_Right = True
+            elif self.color[self.num] == 1 or self.color[self.num] == 0:
+                self.min_counter_Left = True
+                if self.color[self.num - 1] == 2:
+                    self.min_counter_Left = False
 
-                if self.color[self.num-1]==2 :
-                    self.min_counter_Right = False
+
         elif stage1_state.on == 4:
                 if self.min_counter_Left:
                     self.min_counter_Left = False
