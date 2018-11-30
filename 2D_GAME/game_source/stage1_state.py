@@ -7,7 +7,8 @@ import game_framework
 import stage1_world
 import game_state
 from stage1 import Back
-from stage1 import Time
+#from stage1 import Time
+from Main_Stage import Time
 from stage1 import Shell
 name = "Stage_1State"
 

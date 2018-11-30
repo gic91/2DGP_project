@@ -4,11 +4,9 @@ import game_framework
 import random
 import Main_Stage
 import stage1_state
+from Main_Stage import Time
 
-time_time = Main_Stage.time_time
-
-Min_time= Main_Stage.min_time
-
+time_time=None
 # 시간 조정만 하면 끝
 # 깨면 +10
 class Back:
@@ -21,28 +19,11 @@ class Back:
     def draw(self):
         self.image.draw(600, 400)
 
-class Time:
-    def __init__(self):
-        self.timer =0
-        self.font = load_font('ENCR10B.TTF', 60)
-        self.main_time =100
-        self.timer2=100
-        self.min_time=0
-    def update(self):
-        global time_time,Min_time
-        self.timer =int(get_time())
-        self.main_time = self.timer2 - self.timer -Min_time
-        Main_Stage.min_time =Min_time
-        time_time = self.main_time
-        if self.main_time ==0:
-            game_framework.quit()
-    def draw(self):
-        self.font.draw(1060, 670, '%3d' % self.main_time, (255, 0, 0))
-
 
 class Shell:
 
     def __init__(self):
+        global time_time
         self.image = load_image('game_sprite\\shell.png')
         self.Count =20
         self.out_on=[False]
@@ -55,7 +36,6 @@ class Shell:
             self.X.append(i*0)
         self.start=500
         self.num=0
-        self.min_time=0
         self.min_counter_Left=False
         self.min_counter_Center = False
         self.min_counter_Right = False
@@ -63,11 +43,12 @@ class Shell:
         self.correct_sound.set_volume(32)
         self.error_sound = load_wav('music\\error.wav')
         self.error_sound.set_volume(32)
+        time_time=Time()
     def add_event(self, event):
         self.event_que.insert(0, event)
 
     def update(self):
-        global Min_time,time_time
+
         self.start-=10
         if self.start <=0:
             self.start =0
@@ -116,17 +97,17 @@ class Shell:
         elif stage1_state.on == 4:
                 if self.min_counter_Left:
                     self.min_counter_Left = False
-                    Min_time += 3
+                    time_time.min_time += 3
                     self.error_sound.play()
         elif stage1_state.on == 5:
               if self.min_counter_Center:
                     self.min_counter_Center = False
-                    Min_time += 3
+                    time_time.min_time+= 3
                     self.error_sound.play()
         elif stage1_state.on == 6:
              if self.min_counter_Right:
                     self.min_counter_Right = False
-                    Min_time += 3
+                    time_time.min_time += 3
                     self.error_sound.play()
 
         for i in range(0, self.num):

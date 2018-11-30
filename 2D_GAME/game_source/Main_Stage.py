@@ -2,8 +2,8 @@ from pico2d import *
 
 import game_framework
 import menu_state
-time_time =100
-min_time = 0
+time_time=100
+min_time=100
 class Stage:
     def __init__(self):
         self.image = load_image('game_sprite\\main_background.png')
@@ -69,12 +69,11 @@ class Time:
         self.timer =0
         self.font = load_font('ENCR10B.TTF', 60)
         self.main_time =100
+        self.min_time=0
         self.timer2=100
     def update(self):
-        global time_time,min_time
         self.timer =int(get_time())
-        self.main_time = self.timer2 - self.timer -min_time + menu_state.menu_time
-        time_time = self.main_time
+        self.main_time = self.timer2 - self.timer-self.min_time + menu_state.menu_time
         if self.main_time ==0:
             game_framework.quit()
     def draw(self):
