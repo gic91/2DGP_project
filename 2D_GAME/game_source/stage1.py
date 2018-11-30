@@ -9,6 +9,8 @@ time_time = Main_Stage.time_time
 
 Min_time= Main_Stage.min_time
 
+# 시간 조정만 하면 끝
+# 깨면 +10
 class Back:
     def __init__(self):
         self.image = load_image('game_sprite\\stage1.png')
@@ -79,38 +81,38 @@ class Shell:
                     game_framework.pop_state()
             elif self.color[self.num]==1 or self.color[self.num]==2:
                 self.min_counter_Left =True
+
                 if self.color[self.num-1]==0 :
                     self.min_counter_Left = False
 
         elif stage1_state.on == 2:
             if self.color[self.num] == 1:
-                self.min_counter_Left = False
-                self.correct_sound.play()
+                self.min_counter_Center = False
                 self.num += 1
+                self.correct_sound.play()
                 if self.num >= self.Count:
                     self.num += 0
+
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 2:
-                self.min_counter_Left = True
-                if self.color[self.num - 1] == 1:
-                    self.min_counter_Left = False
+                self.min_counter_Center = True
 
-
+                if self.color[self.num-1]==1 :
+                    self.min_counter_Center = False
         elif stage1_state.on == 3:
 
             if self.color[self.num] == 2:
-                self.min_counter_Left = False
-                self.correct_sound.play()
+                self.min_counter_Right = False
                 self.num += 1
+                self.correct_sound.play()
                 if self.num >= self.Count:
                     self.num += 0
                     game_framework.pop_state()
-            elif self.color[self.num] == 1 or self.color[self.num] == 0:
-                self.min_counter_Left = True
-                if self.color[self.num - 1] == 2:
-                    self.min_counter_Left = False
+            elif self.color[self.num] == 0 or self.color[self.num] == 1:
+                self.min_counter_Right = True
 
-
+                if self.color[self.num-1]==2 :
+                    self.min_counter_Right = False
         elif stage1_state.on == 4:
                 if self.min_counter_Left:
                     self.min_counter_Left = False

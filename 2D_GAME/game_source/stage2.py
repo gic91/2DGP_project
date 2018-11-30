@@ -14,6 +14,9 @@ count =20
 num=0
 shape=[0,1,2,1,2,0,1,2,0,2,0,1,2,1,2,0,1,2,0,2]
 plus =0
+
+# 시간 설정
+# 틀렸을때 -, 깨면 +10
 class Back:
     def __init__(self):
         self.image = load_image('game_sprite\\stage2.png')
@@ -50,6 +53,7 @@ class Hero:
         num=0
         self.hero_sound = load_wav('music\\stage2_hero.wav')
         self.hero_sound.set_volume(32)
+
     def update(self):
         global X,count,num,shape,plus
         if stage2_state.key ==1:
@@ -96,7 +100,9 @@ class Bomb:
         self.image = load_image('game_sprite\\stage2_item.png')
         self.bomb_sound = load_wav('music\\stage2_bomb.wav')
         self.bomb_sound.set_volume(32)
-        mario = game_state.mario
+        self.error_sound = load_wav('music\\stage2_error.wav')
+        self.error_sound.set_volume(32)
+
         for i in range(0,count):
             X.append(i*0)
         self.timer=0
@@ -113,9 +119,10 @@ class Bomb:
                num=20
         for i in range(0, num):
             X[i] += 15
-            if X[i] ==1205:
+            if X[i] >=1200 and X[i] <1220:
                 Min_time+=5
-            elif X[i] >=1210:
+                self.error_sound.play()
+            elif X[i] >=1220:
                 X[i] =10000
         if X[count-1] >= 10000:
             mario.dir_init()
