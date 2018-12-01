@@ -81,7 +81,7 @@ class Item:
                 self.right_c = 0
                 self.switch_3 = 1
         if self.switch_1==1 and self.switch_2 ==1 and self.switch_3 ==1:
-            Main_Stage.plus_time += 10
+            Main_Stage.plus_time +=5
             self.clear_sound.play()
             game_framework.pop_state()
     def draw(self):

@@ -73,7 +73,7 @@ class Hero:
                 self.num+=1
                 self.hero_sound.play()
                 if self.num >= count:
-                    Main_Stage.plus_time += 10
+                    Main_Stage.plus_time += 5
                     self.clear_sound.play()
                     game_framework.pop_state()
 
@@ -84,7 +84,7 @@ class Hero:
                 self.num += 1
                 self.hero_sound.play()
                 if self.num >= count:
-                    Main_Stage.plus_time += 10
+                    Main_Stage.plus_time += 5
                     self.clear_sound.play()
                     game_framework.pop_state()
 
@@ -95,7 +95,7 @@ class Hero:
                 self.num += 1
                 self.hero_sound.play()
                 if self.num >= count:
-                    Main_Stage.plus_time += 10
+                    Main_Stage.plus_time += 5
                     self.clear_sound.play()
                     game_framework.pop_state()
 

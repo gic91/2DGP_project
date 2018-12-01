@@ -7,7 +7,7 @@ import stage1_state
 import stage2_state
 import stage3_state
 import stage4_state
-import end_state
+import clear_state
 import random
 from Main_Stage import Coin
 # Boy Run Speed
@@ -62,7 +62,7 @@ class IdleState:
         if boy.Coin_count ==4:
             if event == UP_DOWN:
                 if boy.x > 920 and boy.x<1100:
-                    game_framework.exit()
+                    game_framework.push_state(clear_state)
     @staticmethod
     def exit(boy, event):
         if event == SPACE:

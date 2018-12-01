@@ -92,7 +92,7 @@ class Bomb:
         self.timer=0
         num=0
     def update(self):
-        global X,num,Min_time
+        global X,num
 
         self.timer +=1
         if self.timer %20 ==0:
@@ -109,7 +109,7 @@ class Bomb:
             elif X[i] >=1220:
                 X[i] =10000
         if X[count-1] >= 10000:
-            Main_Stage.plus_time += 10
+            Main_Stage.plus_time += 5
             self.clear_sound.play()
             game_framework.pop_state()
 

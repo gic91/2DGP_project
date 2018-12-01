@@ -61,7 +61,7 @@ class Shell:
                 self.num += 1
                 if self.num >= self.Count:
                     self.num += 0
-                    Main_Stage.plus_time+=10
+                    Main_Stage.plus_time+=5
                     self.clear_sound.play()
                     game_framework.pop_state()
             elif self.color[self.num]==1 or self.color[self.num]==2:
@@ -77,7 +77,7 @@ class Shell:
                 self.correct_sound.play()
                 if self.num >= self.Count:
                     self.num += 0
-                    Main_Stage.plus_time += 10
+                    Main_Stage.plus_time += 5
                     self.clear_sound.play()
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 2:
@@ -93,7 +93,7 @@ class Shell:
                 self.correct_sound.play()
                 if self.num >= self.Count:
                     self.num += 0
-                    Main_Stage.plus_time += 10
+                    Main_Stage.plus_time += 5
                     self.clear_sound.play()
                     game_framework.pop_state()
             elif self.color[self.num] == 0 or self.color[self.num] == 1:

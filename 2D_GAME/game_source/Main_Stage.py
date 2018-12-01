@@ -6,6 +6,8 @@ import end_state
 time_time=100
 min_time=0
 plus_time=0
+end_on = False
+end_time =0
 class Stage:
     def __init__(self):
         self.image = load_image('game_sprite\\main_background.png')
@@ -71,19 +73,23 @@ class Time:
         self.timer =0
         self.font = load_font('ENCR10B.TTF', 60)
         self.main_time =100
-
         self.timer2=100
+
     def update(self):
-        global time_time,min_time,plus_time
+        global time_time,min_time,plus_time, end_time,end_on
         self.timer =int(get_time())
         self.main_time = self.timer2 - self.timer-min_time + menu_state.menu_time +plus_time
         if self.main_time <0:
             self.main_time = 0
         time_time = self.main_time
+        end_time= self.main_time
         if self.main_time ==0:
-            game_framework.quit()
+            game_framework.change_state(end_state)
     def draw(self):
-        self.font.draw(1060, 670, '%3d' % self.main_time, (255, 0, 0))
+        if end_on:
+            self.font.draw(860, 670, '%3d' % end_time, (255, 0, 0))
+        else:
+            self.font.draw(1060, 670, '%3d' % self.main_time, (255, 0, 0))
 
 class Coin:
     def __init__(self, count=0):
